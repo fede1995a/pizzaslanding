@@ -31,6 +31,12 @@ input[type="submit"] {
     border-radius: 17.5px;
 }
 
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+
+
 .section {
     display: flex;
     justify-content: center;
@@ -58,10 +64,31 @@ input[type="submit"] {
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     padding: 10px 10px;
+    gap: 90px;
     /*border: 1px red solid*/
+}
+
+.home {
+width: 38px;
+height: 16px;
+
+margin-left: 10px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 131.02%;
+/* identical to box height, or 16px */
+
+color: #FFFFFF;
+
+
+}
+.toggle-menu:hover {
+    cursor: pointer;
 }
 
 .listita {
@@ -69,7 +96,12 @@ input[type="submit"] {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10px;
+    gap: 90px;
     /*border: 1px red solid;*/
+}
+
+.listita:hover {
+    cursor: pointer;
 }
 
 .header {
@@ -90,6 +122,10 @@ input[type="submit"] {
 
 .logo-container img {
     height: 60%;
+}
+
+.listita li i {
+    color: #ffa400;
 }
 
 
@@ -137,7 +173,7 @@ input[type="submit"] {
 .popularesContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 90px;
+    grid-gap: 40px;
     margin: 0 auto;
     /* background: #FFA100; */
     max-width: 1400px;
@@ -156,6 +192,10 @@ input[type="submit"] {
     border-radius: 15px;
 }
 
+.popular:hover {
+    transform: scale(1.1);
+    transition: 0.7s;
+}
 
 /* Hero */
 
@@ -270,11 +310,13 @@ input[type="submit"] {
     border-radius: 15px;
 }
 
+
+/* Estilo para todos los encabezados de cada seccion */
 .encabezado {
     width: 278px;
     height: 23px;
     margin-left: 10vw;
-    margin-top: 50px;
+    margin-top: 80px;
     margin-bottom: 30px;
     font-family: 'Montserrat';
     font-style: normal;
@@ -355,45 +397,6 @@ input[type="submit"] {
     /* text-fill-color: transparent; */
 }
 
-.recomendados__descripcion {
-    /* Resaturant Name */
-    /* position: absolute; */
-    height: 17px;
-    left: 19.21%;
-    right: 72.32%;
-    top: calc(50% - 17px/2 - 310px);
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    /* identical to box height */
-    letter-spacing: 0.5px;
-    color: #FFFFFF;
-    mix-blend-mode: normal;
-    opacity: 0.3;
-}
-
-.recomendados__precio {
-    /* Priece */
-    /* position: absolute; */
-    height: 25px;
-    left: 19.24%;
-    right: 76.4%;
-    top: calc(50% - 25px/2 - 284px);
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 25px;
-    line-height: 131.02%;
-    /* identical to box height, or 25px */
-    /* linear-primary */
-    background: linear-gradient(98.81deg, #FFA100 -0.82%, #FF005C 101.53%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* text-fill-color: transparent; */
-}
 
 .footer {
     display: flex;
@@ -415,4 +418,139 @@ input[type="submit"] {
 
 .corazon {
     color: #FB103D;
+}
+
+/* MEDIAS QUERIES */
+@media (max-width: 1279px) {
+    /* LOS MAS POPULARES */
+    .popularesContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+        width: fit-content;
+    }
+}
+
+/* BREAKPOINT PARA TABLETS */
+@media (max-width: 768px) {
+    /* NAvbar */
+    .navbar {
+        gap: 60px;
+    }
+
+    .listita {
+        gap: 60px;
+    }
+
+    /* HERO */
+    .hero__img {
+        display: none;
+    }
+
+    .hero {
+        margin: 0px auto;
+        padding-left: 90px;
+    }
+
+    /* RECOMENDADOS */
+    .recomendados__container {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    /* LOS MAS POPULARES */
+    .popularesContainer {
+        grid-template-columns: 1fr 1fr;
+        width: fit-content;
+    }
+}
+
+
+
+/* Breakpoint para celulares */
+@media (max-width: 480px) {
+
+    /* Navbar */
+    .header {
+        flex-direction: column;
+        margin-bottom: 70px;
+    }
+
+    .logo-container img {
+        height: 100px;
+        margin: 40px auto;
+    }
+
+    .home {
+        display: none;
+    }
+
+    .navbar {
+        gap: 60px;
+    }
+
+    .listita {
+        gap: 60px;
+    }
+
+    /* HERO */
+   .hero__img {
+    display: none;
+   }
+
+   .hero {
+    text-align: center;
+    width: fit-content;
+    margin: 0px auto;
+    margin-top: 90px;
+    padding-left: 0px;
+   }
+
+   .hero__title{
+    align-items: center;
+    justify-content: center;
+   }
+
+   .hero__title > span {
+    font-size: 45px;
+    width: fit-content;
+    height: fit-content;
+   }
+
+   .hero__title input {
+    margin-top: 30px;
+   }
+
+   .subtitle {
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+   }
+
+   .subtitle b {
+    font-size: 40px;
+   }
+
+   .subtitle span {
+    width: 300px;
+   }
+
+   /* RECOMENDADOS */
+   .recomendados__container {
+    flex-direction: column;
+    gap: 50px;
+   }
+
+   /* LOS MAS POPULARES */
+   .popularesContainer {
+    grid-template-columns: 1fr;
+    width: fit-content;
+    grid-gap: 90px;
+   }
+
+   /* FOOTER */
+   .footer-list {
+    flex-direction: column;
+    margin-bottom: 40px;
+    text-align: center;
+    gap: 10px;
+   }
 }
