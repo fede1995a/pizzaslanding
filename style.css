@@ -44,15 +44,32 @@ input[type="submit"] {
 
 /* SECCION NAVBAR*/
 
-#togle-menu {
+
+/* #togle-menu {
     display: none;
     visibility: hidden;
-}
+} */
 
 .header-container {
     position: sticky;
     top: 0%;
     z-index: 9999;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    /*border: 1px red solid*/
+}
+
+.listita {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+    /*border: 1px red solid;*/
 }
 
 .header {
@@ -73,43 +90,6 @@ input[type="submit"] {
 
 .logo-container img {
     height: 60%;
-}
-
-
-/* .navbar,
-.navbar-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
-
-.home {
-    /* position: absolute; */
-    width: 38px;
-    height: 16px;
-    left: 1215px;
-    top: 64px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 131.02%;
-}
-
-
-/* .homelogo {
-    position: absolute;
-    left: 10.42%;
-    right: 10.42%;
-    top: 8.33%;
-    bottom: 8.33%;
-} */
-
-.carrito {
-    /* position: absolute; */
-    left: 8.33%;
-    right: 8.27%;
-    top: 10.42%;
-    bottom: 27.13%;
 }
 
 
