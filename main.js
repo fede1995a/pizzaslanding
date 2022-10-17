@@ -1,6 +1,7 @@
 const categoria = document.getElementById('categorias');
 const populares = document.getElementById('populares');
 const recomendados = document.getElementById('recomendados');
+const cartContainer = document.getElementById('cartbtn');
 
 
 // array de la seccion de "Hoy te recomendamos"
@@ -179,3 +180,18 @@ const renderpopula = populares1 => {
 }
 
 renderpopula(popularesArray);
+
+const closeCart = () => {
+    cartContainer.classList.add('hidden');
+};
+
+const openCart = () => {
+    cartContainer.classList.remove('hidden');
+};
+
+const init = () => {
+    cartContainer.addEventListener('click', openCart);
+    cerrarCart.addEventListener('click', closeCart);
+};
+
+init();
