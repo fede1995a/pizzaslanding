@@ -1,197 +1,169 @@
-const categoria = document.getElementById('categorias');
-const populares = document.getElementById('populares');
-const recomendados = document.getElementById('recomendados');
-const cartContainer = document.getElementById('cartbtn');
+//Cosas para el render de las pizzas
+const categoria = document.getElementById("categorias");
+const populares = document.getElementById("populares");
+const recomendados = document.getElementById("recomendados");
 
+//Cosas del carrito
+const cartContainer = document.getElementById("cartContainer");
+const openCart = document.getElementById("openBtn");
+const closeCart = document.getElementById("closeBtn");
+const listContainer = document.getElementById("lista-container");
+const subTotal = document.getElementById("subtotal");
+const envio = document.getElementById("envio");
+const total = document.getElementById("total");
+const comprarBtn = document.getElementById('comprarBtn')
 
-// array de la seccion de "Hoy te recomendamos"
+//Array para el carrito
+let carrito = [];
 
-let recomendadosArray = [{
-        imagen: './assets/hero/bennaziana.png',
-        nombre: 'Bennazianna',
-        descripcion: 'La más completa',
-        precio: '3650',
-    },
-    {
-        imagen: './assets/hero/tronco-pizza.png',
-        nombre: 'Tronco_Pizza',
-        descripcion: 'Para todo el dia',
-        precio: '870',
-    },
-    {
-        imagen: './assets/hero/papas-provenzal.png',
-        nombre: 'Papas | Provenzal',
-        descripcion: 'Van como piña',
-        precio: '360',
-    },
-];
-
-// renderizo la lista de los mas recomendados
-const renderRecomendados = recomendadosArray1 => {
-
-    recomendados.innerHTML = recomendadosArray1.map(recomendados => {
-            return `
-      <div class="recomendado">
-      <img src="${recomendados.imagen}" alt="${recomendados.nombre}">
-      <div class="text__box">
-          <span class="nombre">${recomendados.nombre}</span>
-          <span class="descripcion">${recomendados.descripcion}</span>
-          <span class="precio">$${recomendados.precio}</span>
-      </div>
-      <input type="submit" value="Agregar" class="submit__recomendados">
-  </div>
-     `
-        })
-        .join('');
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('carrito')) {
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        cartListAdder()
+    }
+})
+//Condicional para mostrar mensaje de carrito vacio
+if (carrito.length == 0) {
+  listContainer.innerHTML = `
+    <p>Carrito vacio</p>
+    `;
 }
-renderRecomendados(recomendadosArray);
 
-// array con los productos de categoria para despues renderizarlo
+//ForEach para renderizar HTML de los Recomendados
+recomendadosArray.forEach((pizzaRecomendada) => {
+  const div = document.createElement("div");
+  div.classList.add("recomendado");
 
-let categoriaArray = [{
+  div.innerHTML = `
+    <img src="${pizzaRecomendada.imagen}" alt="${pizzaRecomendada.nombre}">
+        <div class="text__box">
+        <span class="nombre">${pizzaRecomendada.nombre}</span>
+        <span class="descripcion">${pizzaRecomendada.descripcion}</span>
+        <span class="precio">$${pizzaRecomendada.precio}</span>
+        </div>
+        <input type="submit" value="Agregar" class="submit__recomendados" id="add${pizzaRecomendada.nombre}">
+    `;
+  recomendados.appendChild(div);
 
-        imagen: './assets/categorias/pizzass.png',
-        nombre: 'Pizzas',
-    },
-    {
-        imagen: './assets/categorias/burger 1.png',
-        nombre: 'Hamburguesas',
-    },
-    {
-        imagen: './assets/categorias/fries 2.png',
-        nombre: 'Napapuki',
-    },
-    {
-        imagen: './assets/categorias/pizzass2.png',
-        nombre: 'Individuales',
-    },
-    {
-        imagen: './assets/categorias/buritto-1.png',
-        nombre: 'Wraps',
-    },
-    {
-        imagen: './assets/categorias/taco-1.png',
-        nombre: 'Mexican Food',
-    },
-    {
-        imagen: './assets/categorias/float-1.png',
-        nombre: 'Batidukis',
-    },
-];
+  const add = document.getElementById(`add${pizzaRecomendada.nombre}`);
 
-//renderizo categoria
-const rendercategoria = categoriaArray1 => {
+  add.addEventListener("click", () => addToCart1(pizzaRecomendada.nombre));
+});
 
-    categoria.innerHTML = categoriaArray1.map(categori => {
-            return `
-      <div class="categoria">
-     
-      <img src="${categori.imagen}" alt="">
-     <h3>${categori.nombre}</h3>
+//Funcion para agregar al carrito las pizzas recomendadas
+const addToCart1 = (pizzaName) => {
+
+  const pizza = recomendadosArray.find((pizza) => pizza.nombre === pizzaName);
+  carrito.push(pizza);
+  cartListAdder();
+  console.log(carrito);
+};
+
+//ForEach para renderizar HTML de las Categorias
+categoriaArray.forEach((categoriaPizza) => {
+  const div = document.createElement("div");
+  div.classList.add("categoria");
+
+  div.innerHTML = `
+    <img src="${categoriaPizza.imagen}" alt="">
+     <h3>${categoriaPizza.nombre}</h3>
      <span></span>
-     
-     </div>
-     `
-        })
-        .join('');
-}
-rendercategoria(categoriaArray);
+    `;
+  categoria.appendChild(div);
+});
 
-//array con los mas populares
-let popularesArray = [{
-        imagen: './assets/populares/mrpitt.png',
-        nombre: 'La Mr.Pit',
-        descripcion: 'solo para expertos',
-        precio: '350',
+//ForEach para renderizar HTML de loas Populares
+popularesArray.forEach((popularesPizza) => {
+  const div = document.createElement("div");
+  div.classList.add("popular");
 
-    },
-    {
-        imagen: './assets/populares/qjamone.png',
-        nombre: '¡Q´Jamone!',
-        descripcion: '¡BASTA!',
-        precio: '350',
-
-    },
-    {
-        imagen: './assets/populares/charly.png',
-        nombre: 'La Charly Gacía',
-        descripcion: 'solo para expertos',
-        precio: '380',
-
-    },
-    {
-        imagen: './assets/populares/maradona.png',
-        nombre: 'La Maradona',
-        descripcion: '¡Eterna!',
-        precio: '450',
-
-    },
-    {
-        imagen: './assets/populares/picantovich.png',
-        nombre: 'Picantovich',
-        descripcion: 'Pica 2 veces',
-        precio: '750',
-
-    },
-    {
-        imagen: './assets/populares/hasbu.png',
-        nombre: 'La Hasbulla',
-        descripcion: 'En honor al 1',
-        precio: '990',
-
-    },
-    {
-        imagen: './assets/populares/messi.png',
-        nombre: 'Leo Messi',
-        descripcion: '¡De pie señores!',
-        precio: '10',
-
-    },
-    {
-        imagen: './assets/populares/nickgi.png',
-        nombre: 'Nick Gi',
-        descripcion: 'La que desaparece',
-        precio: 'Gratis',
-
-    },
-];
-
-//renderizamos los populares
-
-const renderpopula = populares1 => {
-    populares.innerHTML = populares1.map(popular => {
-            return `
-     <div class="popular">
-       
-        <img src="${popular.imagen}" alt="">
+  div.innerHTML = `
+    <img src="${popularesPizza.imagen}" alt="">
         <div class="box">
           <div class="text__box">
-            <h2 class="nombre">${popular.nombre}</h2>
-            <spam class="descripcion">${popular.descripcion}</spam>
-            <span class="precio"> $ ${popular.precio}</span>
+            <h2 class="nombre">${popularesPizza.nombre}</h2>
+            <spam class="descripcion">${popularesPizza.descripcion}</spam>
+            <span class="precio"> $ ${popularesPizza.precio}</span>
           </div>
-          <input type="submit" value="Agregar">
+          <input type="submit" value="Agregar" id="add${popularesPizza.nombre}">
         </div>
-       
-     </div>
-       `
-        })
-        .join('');
-}
+    `;
+  populares.appendChild(div);
 
-renderpopula(popularesArray);
+  const add = document.getElementById(`add${popularesPizza.nombre}`);
 
-const closeCart = () => {
-    cartContainer.classList.add('hidden');
+  add.addEventListener("click", () => addToCart2(popularesPizza.nombre));
+});
+
+//Funcion para agregar al carrito las pizzas populares
+const addToCart2 = (pizzaName) => {
+  const pizza = popularesArray.find((pizza) => pizza.nombre === pizzaName);
+  carrito.push(pizza);
+  cartListAdder();
+  console.log(carrito);
 };
 
-const openCart = () => {
-    cartContainer.classList.remove('hidden');
+//Eventos para abrir y cerrar el carrito
+openCart.addEventListener("click", () =>
+  cartContainer.classList.remove("hidden")
+);
+closeCart.addEventListener("click", () =>
+  cartContainer.classList.add("hidden")
+);
+
+//Funcion para eliminar productos del carrito
+const cartListDeleter = (pizzaName) => {
+  const pizza = carrito.find((pizza) => pizza.nombre === pizzaName);
+  const index = carrito.indexOf(pizza);
+  carrito.splice(index, 1);
+  cartListAdder();
 };
 
-const init = () => {
-    cartContainer.addEventListener('click', openCart);
-    cerrarCart.addEventListener('click', closeCart);
-};
+const cartListAdder = () => {
+  listContainer.innerHTML = "";
 
-init();
+
+  //Condicional para mostrar mensaje de carrito vacio
+if (carrito.length == 0) {
+    listContainer.innerHTML = `
+      <p>Carrito vacio</p>
+      `;
+  }
+
+  carrito.forEach((pizzas) => {
+    const div = document.createElement("div");
+    div.classList.add("recomendado");
+
+    div.innerHTML = `
+                <img src="${pizzas.imagen}" alt="imagen">
+                <div class="text__box">
+                    <span class="nombre">${pizzas.nombre}</span>
+                    <span class="descripcion">${pizzas.descripcion}</span>
+                    <span class="precio">$ ${pizzas.precio}</span>
+                </div>
+                <div class="contador">
+                    <button class="btn-disminuir">-</button>
+                    <span class="cantidad">1</span>
+                    <button class="btn-aumentar">+</button>
+                    <button onclick="cartListDeleter(${carrito.indexOf(
+                      pizzas.nombre
+                    )})"><i class="deleteBtn fa-solid fa-trash-can"></i></button>
+                </div>
+        `;
+    listContainer.appendChild(div);
+
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+  });
+
+  total.innerText = `$${carrito.reduce((previousValue, currentValue) => Number(previousValue) + Number(currentValue.precio), 0)}`;
+  subTotal.innerText = `$${carrito.reduce((previousValue, currentValue) => Number(previousValue) + Number(currentValue.precio), 0)}`;
+
+  if (carrito.length === 0) {
+    envio.innerText = ""
+    comprarBtn.classList.add('hidden')
+  } else{
+    envio.innerHTML = "Gratis"
+    comprarBtn.classList.remove('hidden')
+  }
+
+};

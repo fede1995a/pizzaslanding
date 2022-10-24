@@ -8,6 +8,9 @@
     <title>NucbaZappi GG</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="pizzaArrays.js"></script>
+    <script defer src="main.js "></script>
+    <script src="https://kit.fontawesome.com/81aceb480e.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,78 +25,36 @@
             <label for="toggle-menu"><img src="./assets/nav things/Home.png" alt="home"> <b class="home">Home</b> </label>
             <ul class="listita">
                 <li><i class="fa-sharp fa-solid fa-user"></i></li>
-                <li><i class="fa-sharp fa-solid fa-cart-shopping cartbtn"></i></li>
+                <li id="openBtn"><i class="fa-sharp fa-solid fa-cart-shopping"></i></li>
             </ul>
         </nav>
 
     </header>
-
     <!-- Carrito -->
-    <section class="cart-container hidden" id="cartCointainer">
-        <span class="close-cart">X</span>
+    <section class="cart-container hidden" id="cartContainer">
+        <span class="close-cart" id="closeBtn">X</span>
         <h2>Tus Productos</h2>
-        <div class="lista-compras" id="">
-
+        <div class="lista-compras" id="lista-container">
             <!-- como deberia quedar con JS -->
-            <div class="recomendado">
-                <img src="" alt="imagen">
-                <div class="text__box">
-                    <span class="nombre">Benezzianna</span>
-                    <span class="descripcion">Va como piña</span>
-                    <span class="precio">$850</span>
-                </div>
-                <div class="contador">
-                    <button class="btn-disminuir">-</button>
-                    <span class="cantidad">1</span>
-                    <button class="btn-aumentar">+</button>
-                </div>
-            </div>
-            <div class="recomendado">
-                <img src="" alt="imagen">
-                <div class="text__box">
-                    <span class="nombre">Benezzianna</span>
-                    <span class="descripcion">Va como piña</span>
-                    <span class="precio">$850</span>
-                </div>
-                <div class="contador">
-                    <button class="btn-disminuir">-</button>
-                    <span class="cantidad">1</span>
-                    <button class="btn-aumentar">+</button>
-                </div>
-            </div>
-            <div class="recomendado">
-                <img src="" alt="imagen">
-                <div class="text__box">
-                    <span class="nombre">Benezzianna</span>
-                    <span class="descripcion">Va como piña</span>
-                    <span class="precio">$850</span>
-                </div>
-                <div class="contador">
-                    <button class="btn-disminuir">-</button>
-                    <span class="cantidad">1</span>
-                    <button class="btn-aumentar">+</button>
-                </div>
-            </div>
-
+            
         </div>
-
 
         <div class="subtotal__envio">
             <p>Subtotal:</p>
-            <span>$1900</span>
+            <span id="subtotal"></span>
         </div>
         <div class="subtotal__envio">
             <p>Envio:</p>
-            <span>Gratis</span>
+            <span id="envio"></span>
         </div>
         <hr class="divisor"></hr>
         <div class="total">
             <p>Total:</p>
-            <span>$1111</span>
+            <span id="total">$</span>
         </div>
         <div class="cart-bottom">
-            <input type="button" value="COMPRAR" class="comprar">
-            <a href="#">Ver más productos</a>
+            <input type="button" value="COMPRAR" class="comprar" id="comprarBtn">
+            <a href="">Ver más productos</a>
         </div>
     </section>
 
@@ -136,11 +97,5 @@
         </ul>
         <p>Hecho con <b class="corazon"> ❤ </b>en <strong>NUCBAZAPPI</strong></p>
     </footer>
-
-    <script src="/main.js "></script>
-    =======
-    <script src="main.js"></script>
-    >>>>>>> 1b2c9d2b42049f1bb13ac3245e5413595a81604b
 </body>
-
 </html>
